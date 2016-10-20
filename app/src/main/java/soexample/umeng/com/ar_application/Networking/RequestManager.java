@@ -1,11 +1,9 @@
 package soexample.umeng.com.ar_application.Networking;
 
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import soexample.umeng.com.ar_application.CustomThreadExcutor;
-import soexample.umeng.com.ar_application.Interface.CallBack;
 
 /**
  * Created by umeng on 10/19/16.
@@ -27,11 +25,7 @@ public class RequestManager {
         return requestManager;
     }
 
-    public void submitTask(Response response){
-        mThreadPoolExecutor.submit(response);
-    }
-
-    public void cancelTask(Runnable runnable){
-        mThreadPoolExecutor.remove(runnable);
+    public void submitTask(Request request){
+        mThreadPoolExecutor.submit(request);
     }
 }

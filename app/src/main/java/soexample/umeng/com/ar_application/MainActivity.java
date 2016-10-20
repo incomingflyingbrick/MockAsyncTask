@@ -28,8 +28,9 @@ import soexample.umeng.com.ar_application.Interface.CallBack;
 public class MainActivity extends AppCompatActivity {
 
     public static String TAG="thread";
-
+    public static int counter = 10;
     @BindView(R.id.my_button) Button mButton;
+    @BindView(R.id.my_button_2) Button mButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(String result,View v) {
                 ((TextView)v).setText(result);
+            }
+        });
+
+        mButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mButton2.setText(counter+1+"");
             }
         });
 
