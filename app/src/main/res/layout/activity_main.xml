@@ -16,5 +16,5 @@
         android:id="@+id/my_button_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click Me!"/>
+        android:text="Button 2:Click Me!"/>
 </LinearLayout>

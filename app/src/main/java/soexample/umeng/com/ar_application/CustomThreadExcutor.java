@@ -1,11 +1,12 @@
 package soexample.umeng.com.ar_application;
 
+
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
+
+
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import soexample.umeng.com.ar_application.Networking.Request;
@@ -15,7 +16,7 @@ import soexample.umeng.com.ar_application.Networking.Request;
  */
 public class CustomThreadExcutor extends ThreadPoolExecutor {
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private static Handler mHandler = new Handler(Looper.getMainLooper());
 
     public CustomThreadExcutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
@@ -30,7 +31,8 @@ public class CustomThreadExcutor extends ThreadPoolExecutor {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        request.onResult("good!", true);
+                        //mock result
+                        request.onResult("success", true);
                     }
                 });
             }

@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,9 +29,9 @@ import soexample.umeng.com.ar_application.Interface.CallBack;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static String TAG="thread";
-    public static int counter = 10;
+
     @BindView(R.id.my_button) Button mButton;
+
     @BindView(R.id.my_button_2) Button mButton2;
 
     @Override
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        //update the text on button,everytime you click it. It use a thread pool to run tasks for mock computation
+        //update the text on button,every time you click it. It use a thread pool to run tasks for mock computation
         mButton.setOnClickListener(new CallBack() {
             @Override
             public void onComplete(String result,View v) {
@@ -45,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mButton2.setText(counter+1+"");
-            }
-        });
+    }
 
+    @Override
+    protected void onDestroy() {
+        soexample.umeng.com.ar_application.Util.Log.debug("GC might be running!");
+        super.onDestroy();
+        System.gc();
     }
 }
